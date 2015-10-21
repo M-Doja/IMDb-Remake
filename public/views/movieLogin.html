@@ -1,0 +1,11 @@
+<br>
+<form class="well container" ng-submit="vm.loginUser()">
+  <label>Username</label>
+  <input class="form-control" required placeholder="Username..." ng-model="vm.user.username">
+  <label>Password</label>
+  <input type="password" class="form-control" required placeholder="Password..." ng-model="vm.user.password">
+  <div style="text-align: center">
+    <a ui-sref="Register" class="btn btn-info">Register</a>
+    <button type="submit" class="btn btn-primary" ng-disabled="!vm.user.username || !vm.user.password">Login</button>
+  </div>
+</form>

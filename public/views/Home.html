@@ -1,0 +1,15 @@
+<div ng-controller="HomeController as vm">
+	<h1>{{vm.title}}</h1>
+<div style="text-align:center">
+	<button class="btn btn-primary well container" ui-sref='AddMovie'><h3>Add Movie</h3></button>
+</div>
+<div ng-repeat='m in vm.movie' class="well container">
+	<img ng-src="{{m.image}}" class="img-responsive" alt='movie image'/>
+	<h2>Title: {{m.title}}</h2>
+	<h4>Main Actors: {{m.name}}</h4>
+	<h5>Release Year: {{m.year}}</h5>
+	<h5>Genre: {{m.genre}}</h5>
+	<p>Synopsis: {{m.synopsis}}</p>
+</div>
+
+</div>
