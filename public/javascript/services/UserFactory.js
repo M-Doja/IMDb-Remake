@@ -58,6 +58,13 @@
       removeUser();
     };
 
+    o.comPost = function(comment){
+      var q = $q.defer();
+      $http.post('/api/user/comment', comment).then(function(res){
+        q.resolve(res.data);
+      });
+      return q.promise;
+    };
     // o.getUser = function() {
     //   return JSON.parse(urlBase64Decode(o.getToken().split('.')[1]));
     // };

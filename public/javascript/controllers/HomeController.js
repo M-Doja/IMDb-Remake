@@ -4,16 +4,27 @@
 	.controller('HomeController', HomeController);
 
 
-	function HomeController(HomeFactory) {
+	function HomeController(HomeFactory, $stateParams) {
 		var vm = this;
 		// vm.title = 'Welcome to our App!';
 		vm.movie = {};
 		vm.editedmovie = {};
+		vm.comment = {};
 
+		if ($stateParams.id){
+			HomeFactory.getMoviesById($stateParams.id).then(function(res){
+				vm.movie = res;
+		});
+	}
+		vm.addComment = function(){
+			HomeFactory.createComment(vm.comment, $stateParams.id).then(function(res){
+				vm.movie = res;
+			});
+		};
 
 		vm.custom = true;
 		vm.toggleCustom = function(){
-			vm.custom = vm.custom ===false ? true:false;
+			vm.custom = vm.custom === false ? true:false;
 		};
 
 
@@ -24,6 +35,12 @@
 			});
 		};
 		vm.getMovies();
+		vm.deleteMovie = function(m){
+			HomeFactory.deleteMovie(m._id).then(function(){
+				vm.movie.splice(vm.movie.indexOf(m),1);
+			});
+		};
+
 
 		vm.editMovie = function(movieId){
 			console.log(movieId);
@@ -37,7 +54,6 @@
 					vm.movie = res;
 				});
 			});
-
 		};
 
 

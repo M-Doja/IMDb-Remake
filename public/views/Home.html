@@ -1,43 +1,65 @@
 <div ng-controller="HomeController as vm">
+			<!-- Nav Bar  -->
 	<div >
 		<div>
-	<ul class="nav nav-pills">
-	<li role="presentation" class="active"><button class="btn btn-info" ui-sref="Landing">Log Out</button></li>
-	<li role="presentation"><button class="btn btn-success" ui-sref="Home">Home</a\button></li>
-	<li role="presentation"><button class="btn btn-success" href="#">Profile</button></li>
-	</ul>
+			<ul class="nav nav-pills">
+			<li role="presentation" class="active"><button class="btn btn-info" ui-sref="Landing">Log Out</button></li>
+			<li role="presentation"><button class="btn btn-success" ui-sref="Home" >Home</a></button></li>
+			<li role="presentation"><button class="btn btn-success" href="#">Profile</button></li>
+		  <li role="presentation"><button class="btn btn-success" ui-sref="Comments">Reviews</button></li>
+			</ul>
 	</div>
 	</div>
+		<!-- Add Button and title -->
 	<h1>{{vm.title}}</h1>
 <div style="text-align:center">
-	<button class="btn btn-primary well container" ui-sref='AddMovie'><h3>Add Movie</h3></button>
+	<button class="btn well container" style='background-color:#09406c' ui-sref='AddMovie'><h3 style="color:#519872">Add Movie</h3></button>
 </div>
-<div ng-repeat='m in vm.movie'  style="background-color:lightgrey;color:black;"class="well container">
-	<img ng-click='vm.toggleCustom()' ng-src="{{m.image}}" class="img-responsive" style="float:right;"alt='movie image'/>
+		<!-- Form Starts -->
+<div ng-repeat='m in vm.movie'  style="background-color:#f6f2a9;color:black;"class="well container">
+	<img ng-src="{{m.image}}" class="img-responsive" style="float:right;"alt='movie image'/>
 	<!-- <span ng-hide='vm.custom'> -->
-	<h2>{{m.title}}</h2>
+	<h2><a ui-sref="movieDetails({id: m._id})"  style="color:black">{{m.title}}</a></h2>
 	<h4>Main Actors: {{m.name}}</h4>
 	<h5>Release Year: {{m.year}}</h5>
 	<h5>Genre: {{m.genre}}</h5>
 	<p>Synopsis: {{m.synopsis}}</p>
-	<button class="btn btn-warning" ng-click='vm.showEdit = !vm.showEdit' type='button'>Edit</button>
+	<button class="btn btn-danger"  type='button' ng-click='vm.deleteMovie(m)' type='button'>Delete</button>
+	<button class="btn btn-warning" ng-click='showEdit = !showEdit' type='button'>Edit</button>
+	<div><br>
+		<label>Comments and Reviews</label><br>
+		<textarea style="width:400px" placeholder="Leave Comments or Reviews Here.." ng-model='vm.comment.body'></textarea><br>
+		<!-- <label>Comment or Review by:</label><br> -->
+		<!-- <input class="form control" placeholder="Your name here..." ng-model='vm.user.username'/> -->
+		<button class="btn btn-primary btn-sm" ng-click="vm.addComment()">Submit</button>
+	</div>
 	<!-- </span> -->
 <div style="text-align:center" >
-<form class="well container" ng-show='vm.showEdit' ng-submit='vm.editMovie(m._id)'>
+
+			<!-- Edit Form -->
+<form ng-init='edittedMovie = vm.getCopy(m);'class="well container" ng-show='showEdit' ng-submit='vm.editMovie(m._id, edittedMovie); showEdit = false;'>
+
 <label>Movie Title</label>
-<input  required class="form-control" type='text' placeholder="{{m.title}}" ng-model='vm.editedmovie.title' />
+<input  required class="form-control" type='text' placeholder="{{m.title}}" ng-model='editedmovie.title' />
+
 <label>Genre</label>
-<input  required class="form-control" type='text' placeholder="{{m.genre}}" ng-model='vm.editedmovie.genre' />
+<input  class="form-control" type='text' placeholder="{{m.genre}}" ng-model='editedmovie.genre' />
+
 <label>Release Year</label>
-<input   class="form-control" type='text' placeholder="{{m.year}}" ng-model='vm.editedmovie.year' />
+<input   class="form-control" type='text' placeholder="{{m.year}}" ng-model='editedmovie.year' />
+
 <label>Actors</label>
-<input  required class="form-control" type='text' placeholder="{{m.name}}" ng-model='vm.editedmovie.name' />
+<input   class="form-control" type='text' placeholder="{{m.name}}" ng-model='editedmovie.name' />
+
 <label>Synopsis</label>
-<input   class="form-control" type='text' placeholder="{{m.synopsis}}" ng-model='vm.editedmovie.synopsis' />
+<input   class="form-control" type='text' placeholder="{{m.synopsis}}" ng-model='editedmovie.synopsis' />
+
 <label>Movie Image Url</label>
-<input class="form-control" type='text' placeholder="Movie URL Image" ng-model='vm.editedmovie.image' />
-<button type="submit" class="btn btn-danger">Save Edit</button>
-<button type="button"ui-sref='Home' class="btn btn-warning">Cancel</button>
+<input class="form-control" type='text' placeholder="Movie URL Image" ng-model='editedmovie.image' />
+<div style="text-align:center">
+	<button class="btn btn-danger" ng-click='showEdit = false' type='button' >Cancel</button>
+	<button type="submit" class="btn btn-success">Submit</button>
+</div>
 </form>
 </div>
 </div>

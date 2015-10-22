@@ -1,0 +1,51 @@
+<div>
+  <div >
+		<div>
+	<ul class="nav nav-pills">
+	<li role="presentation" class="active"><button class="btn btn-info" ui-sref="Landing">Log Out</button></li>
+	<li role="presentation"><button class="btn btn-success" ui-sref="Home">Home</a\button></li>
+	<li role="presentation"><button class="btn btn-success" href="#">Profile</button></li>
+  <li role="presentation"><button class="btn btn-success" ui-sref="Comments">Reviews</button></li>
+	</ul>
+	</div>
+	</div>
+  <h1>Comments Page</h1>
+  <div style="text-align:center" class="well container">
+    <!--  -->
+    <div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3">
+          <img ng-src="{{vm.movie.image}}" ng-alt="{{vm.movie.title}}" class="img-responsive" />
+        </div>
+        <div class="col-sm-9">
+          <h1>Details</h1>
+          <h3>{{vm.movie.title}}</h3>
+          <h3>{{vm.movie.genre}}</h3>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <div class="row">
+        <!-- Shows inputs for a user to add a comment -->
+        <div class="well container form-inline" ng-show="addingComment" style="text-align: center">
+          <input class="form-control" ng-model="vm.comment.body" placeholder="Comment">
+          <label>Rating: </label><select class="form-control" ng-model="vm.comment.rating">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+          <button type="button" class="btn btn-sucess" ng-click="addingComment = false; vm.addComment()">Submit</button>
+          <button type="button" class="btn btn-danger" ng-click="addingComment = false;">Cancel</button>
+        </div>
+        <!-- Shows a button for a user to click on and show the inputs -->
+        <div class="well container" ng-show="!addingComment && nav.status.username" style="text-align: center">
+          <button type="button" class="btn btn-info" ng-click="addingComment = true;">Add Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

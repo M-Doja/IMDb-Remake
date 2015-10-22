@@ -6,7 +6,12 @@ var MovieSchema = new mongoose.Schema ({
   genre: { type: String },
   year: { type: String },
   synopsis: { type: String },
-  image: { type: String }
+  image: { type: String },
+  comments: [{
+    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    body: String,
+    rating: String
+  }]
 });
 
 mongoose.model('MovieModel', MovieSchema);

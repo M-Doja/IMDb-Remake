@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('app', ['ui.router','ngMaterial'])
 	.config(Config);
-	function Config($stateProvider, $urlRouterProvider) {
+	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
 			.state('Landing',{
 			url: '/',
@@ -27,8 +27,14 @@
 				url: '/edit/:id',
 				templateUrl: 'views/editMovie.html',
 				controller: 'HomeController',
-				controllerAs: 'vm'		
+				controllerAs: 'vm'
+		}).state('Comments',{
+				url: '/comments/:id',
+				templateUrl: 'views/Comments.html',
+				controller: 'HomeController',
+				controllerAs: 'vm'
 		});
 		$urlRouterProvider.otherwise('/');
+		$httpProvider.interceptors.push('AuthInterceptor');
 	}
 })();
