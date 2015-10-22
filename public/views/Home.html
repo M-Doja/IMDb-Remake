@@ -2,9 +2,9 @@
 	<div >
 		<div>
 	<ul class="nav nav-pills">
-	<li role="presentation" class="active"><button class="btn btn-success" ui-sref="Landing">Log Out</button></li>
-	<li role="presentation"><a ui-sref="Home">Home</a></li>
-	<li role="presentation"><a href="#">Profile</a></li>
+	<li role="presentation" class="active"><button class="btn btn-info" ui-sref="Landing">Log Out</button></li>
+	<li role="presentation"><button class="btn btn-success" ui-sref="Home">Home</a\button></li>
+	<li role="presentation"><button class="btn btn-success" href="#">Profile</button></li>
 	</ul>
 	</div>
 	</div>
@@ -13,17 +13,15 @@
 	<button class="btn btn-primary well container" ui-sref='AddMovie'><h3>Add Movie</h3></button>
 </div>
 <div ng-repeat='m in vm.movie'  style="background-color:lightgrey;color:black;"class="well container">
-	<img ng-click='vm.toggleCustom()' ng-src="{{m.image}}" class="img-responsive" alt='movie image'/>
+	<img ng-click='vm.toggleCustom()' ng-src="{{m.image}}" class="img-responsive" style="float:right;"alt='movie image'/>
 	<!-- <span ng-hide='vm.custom'> -->
-	<h2>Title: {{m.title}}</h2>
+	<h2>{{m.title}}</h2>
 	<h4>Main Actors: {{m.name}}</h4>
 	<h5>Release Year: {{m.year}}</h5>
 	<h5>Genre: {{m.genre}}</h5>
 	<p>Synopsis: {{m.synopsis}}</p>
 	<button class="btn btn-warning" ng-click='vm.showEdit = !vm.showEdit' type='button'>Edit</button>
 	<!-- </span> -->
-
-
 <div style="text-align:center" >
 <form class="well container" ng-show='vm.showEdit' ng-submit='vm.editMovie(m._id)'>
 <label>Movie Title</label>
