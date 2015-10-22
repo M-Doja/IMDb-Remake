@@ -27,6 +27,14 @@ router.get('/', function(req, res){
     res.send(result);
   });
 });
+router.put('/', function(req, res, next){
+  console.log(req.body);
+  Movie.update({_id: req.body.IDofMovieToEdit}, req.body.editedmovie, function(err, result){
+    if(err) return res.status(500).send(err);
+    if(!result) return res.status(400).send(err);
+    res.send(result);
+  });
+});
 
 
 

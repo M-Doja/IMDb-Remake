@@ -1,4 +1,14 @@
 <div ng-controller='AddMovieController as vm'>
+  <div >
+    <div>
+  <ul class="nav nav-pills">
+  <li role="presentation" class="active"><button class="btn btn-success" ui-sref="Landing">Log Out</button></li>
+  <li role="presentation"><a ui-sref="Home">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  </ul>
+  </div>
+  </div>
+
   <div style="text-align:center" >
   <form class="well container" ng-submit='vm.PostMovie()'>
     <label>Movie Title</label>
@@ -17,4 +27,6 @@
     <button type="button"ui-sref='Home' class="btn btn-warning">Cancel</button>
   </form>
 </div>
+<!--  -->
+
 </div>

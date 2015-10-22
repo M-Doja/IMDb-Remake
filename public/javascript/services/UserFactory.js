@@ -80,7 +80,7 @@
 
     // var token = getToken();
     // o.status = {};
-    // if(token) {
+    if(getToken()) setUser();
     //   var user = setUser();
     //   o.status.username = user.username;
     //   o.status._id = user._id;

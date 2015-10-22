@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router'])
+	angular.module('app', ['ui.router','ngMaterial'])
 	.config(Config);
 	function Config($stateProvider, $urlRouterProvider) {
 		$stateProvider
@@ -23,6 +23,11 @@
 				templateUrl: 'views/register.html',
 				controller: 'UserController',
 				controllerAs: 'vm'
+		}).state('EditMovie',{
+				url: '/edit/:id',
+				templateUrl: 'views/editMovie.html',
+				controller: 'HomeController',
+				controllerAs: 'vm'		
 		});
 		$urlRouterProvider.otherwise('/');
 	}

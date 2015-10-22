@@ -4,23 +4,24 @@
 	<title>My App</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="angular-material/angular-material.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap_theme.css">
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
+	<style>
+		body{
+			background-image: url('http://cdn.funcheap.com/wp-content/uploads/2012/08/cccam1.jpg');
+		}
+	</style>
 </head>
 <body>
-	<div ng-controller='GlobalController as vm'>
-		<div >
-	<ul ng-show="vm.nav" class="nav nav-pills">
-  <li role="presentation" class="active"><a ui-sref="Landing">Log Out</a></li>
-  <li role="presentation"><a ui-sref="Home">Home</a></li>
-	<li role="presentation"><a href="#">Profile</a></li>
-	</ul>
-	</div>
+
 	<ui-view></ui-view>
-</div>
 	<!-- Ext Libs -->
 	<script src="angular/angular.min.js"></script>
 	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="angular-animate/angular-animate.min.js"></script>
+	<script src="angular-aria/angular-aria.min.js"></script>
+	<script src="angular-material/angular-material.min.js"></script>
 	<!-- Global Src -->
 	<script src="/javascript/app.js"></script>
 	<!-- Factories -->

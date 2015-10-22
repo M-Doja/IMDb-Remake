@@ -1,16 +1,19 @@
 <br>
 <form class="well container" ng-submit="vm.registerUser()">
-  <label>Username</label>
+  <h1 style="text-align:center;color:red;">Registration</h1>
+  <label style="font-family:Ariel;">User Name</label>
   <input class="form-control" placeholder="Username..." ng-model="vm.user.username" required>
-  <label>Email</label>
+  <label style="font-family:Ariel;">Email</label>
   <input class="form-control" type="email" placeholder="Email..." ng-model="vm.user.email" required>
-  <label>Password</label>
+  <label style="font-family:Ariel;">Password</label>
   <input class="form-control" type="password" placeholder="Password..." ng-model="vm.user.password" required>
-  <label>Confirm Password</label>
+  <label style="font-family:Ariel;">Confirm Password</label>
   <input class="form-control" type="password" placeholder="Confirm Password..." ng-model="vm.user.confirmPassword" required>
+
   <div ng-show="vm.user.password && vm.user.confirmPassword && !(vm.user.password === vm.user.confirmPassword)" style="color: red">Your passwords must match.</div>
   <div style="text-align:center">
     <a ui-sref="Login" class="btn btn-primary">Login</a>
     <button type="submit" class="btn btn-info" ng-disabled="!vm.user.email || !vm.user.username || !vm.user.password || !(vm.user.password === vm.user.confirmPassword)">Register</button>
   </div>
+
 </form>

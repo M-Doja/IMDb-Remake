@@ -23,6 +23,19 @@
 			});
 			return q.promise;
 		};
+		var editedmovie = {};
+
+
+
+		o.EditMovie = function(id){
+			console.log(id);
+			var q= $q.defer();
+			$http.put('/api/movies', id).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 
 		return o;
 	}
