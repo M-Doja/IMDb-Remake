@@ -1,19 +1,6 @@
-<div>
-  <div >
-		<div>
-	<ul class="nav nav-pills">
-	<li role="presentation" class="active"><button class="btn btn-info" ui-sref="Landing">Log Out</button></li>
-	<li role="presentation"><button class="btn btn-success" ui-sref="Home">Home</a\button></li>
-	<li role="presentation"><button class="btn btn-success" href="#">Profile</button></li>
-  <li role="presentation"><button class="btn btn-success" ui-sref="Comments">Reviews</button></li>
-	</ul>
-	</div>
-	</div>
-  <h1>Comments Page</h1>
-  <div style="text-align:center" class="well container">
-    <!--  -->
-    <div>
-      <br>
+<div ng-controller="CommentController as vm">
+    <br>
+    <div class="well conatiner" style="text-align: center;">
       <div class="row">
         <div class="col-sm-3">
           <img ng-src="{{vm.movie.image}}" ng-alt="{{vm.movie.title}}" class="img-responsive" />
@@ -21,9 +8,10 @@
         <div class="col-sm-9">
           <h1>Details</h1>
           <h3>{{vm.movie.title}}</h3>
-          <h3>{{vm.movie.genre}}</h3>
+          <h3>{{vm.movie.synopsis}}</h3>
         </div>
       </div>
+    </div>
       <br>
       <hr>
       <div class="row">
@@ -45,7 +33,5 @@
           <button type="button" class="btn btn-info" ng-click="addingComment = true;">Add Comment</button>
         </div>
       </div>
-    </div>
-  </div>
 
 </div>

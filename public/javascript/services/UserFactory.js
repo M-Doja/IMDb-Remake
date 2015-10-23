@@ -6,15 +6,24 @@
     var o = {};
     o.status = {};
 
+    if(getToken()){
+      setUser();
+    }
+
+    o.logout = function(){
+      removeToken();
+      o.status.username = null;
+      o.status._id = null;
+    };
     o.registerUser = function(user) {
         console.log(user);
       var q = $q.defer();
       $http.post('/api/user/register', user).then(function(res) {
         o.setToken(res.data);
         setUser();
-        // var user = o.getUser();
-        // o.status.username = user.username;
-        // o.status._id = user._id;
+        var user = o.getUser();
+        o.status.username = user.username;
+        o.status._id = user._id;
         q.resolve(res.data);
       });
       return q.promise;
@@ -27,17 +36,18 @@
         console.log("Fifth stop");
         setToken(res.data); //puts the token on localStorage
         setUser();
-        // var user = o.getUser();
-        // o.status.username = user.username;
-        // o.status._id = user._id;
+        var user = o.getUser();
+        o.status.username = user.username;
+        o.status._id = user._id;
         q.resolve(res.data);
       });
       return q.promise;
     };
     function setUser(){
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
-      o.status.username = null;
-      o.status._id = null;
+      o.status.username = user.username;
+      o.status._id = user._id;
+      console.log(o.status);
     }
     function removeUser(){
       o.status.username = null;
@@ -65,11 +75,6 @@
       });
       return q.promise;
     };
-    // o.getUser = function() {
-    //   return JSON.parse(urlBase64Decode(o.getToken().split('.')[1]));
-    // };
-
-
 
     function urlBase64Decode(str) {
       var output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -84,23 +89,11 @@
       return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
     }
 
-
-    // var token = getToken();
-    // o.status = {};
-    if(getToken()) setUser();
-    //   var user = setUser();
-    //   o.status.username = user.username;
-    //   o.status._id = user._id;
-    // }
+    o.getUser = function() {
+      return JSON.parse(urlBase64Decode(getToken().split('.')[1]));
+    };
 
 
-    // o.getSurveyByUser = function(id){
-    //   var q =$q.defer();
-    //   $http.get('/api/user/profile/'+ id).then(function(res){
-    //     q.resolve(res.data);
-    //   });
-    //   return q.promise;
-    // };
 
     return o;
 }

@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router','ngMaterial'])
+	angular.module('app', ['ui.router'])
 	.config(Config);
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
@@ -15,13 +15,8 @@
 				templateUrl: 'views/AddMovie.html'
 		}).state('Login',{
 				url: '/login',
-				templateUrl: 'views/movieLogin.html',
-				controller: 'UserController',
-				controllerAs: 'vm'
-		}).state('Register',{
-				url: '/register',
-				templateUrl: 'views/register.html',
-				controller: 'UserController',
+				templateUrl: 'views/Login_Register.html',
+				controller: 'GlobalController',
 				controllerAs: 'vm'
 		}).state('EditMovie',{
 				url: '/edit/:id',
@@ -38,3 +33,8 @@
 		$httpProvider.interceptors.push('AuthInterceptor');
 	}
 })();
+// npm install --save-dev gulp gulp-uglify gulp-concat gulp-beautify gulp-ng-annotate
+//
+//
+//
+//

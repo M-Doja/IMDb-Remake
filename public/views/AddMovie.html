@@ -1,33 +1,26 @@
 <div ng-controller='AddMovieController as vm'>
-  <div >
-    <div>
-  <ul class="nav nav-pills">
-  <li role="presentation" class="active"><button class="btn btn-success" ui-sref="Landing">Log Out</button></li>
-  <li role="presentation"><a ui-sref="Home">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><button class="btn btn-success" ui-sref="Comments">Reviews</button></li>
-  </ul>
-  </div>
-  </div>
+  <form class="well container">
 
-  <div style="text-align:center" >
-  <form class="well container" ng-submit='vm.PostMovie()'>
     <label>Movie Title</label>
     <input  required class="form-control" type='text' placeholder="Title" ng-model='vm.movie.title' />
+
     <label>Genre</label>
     <input  required class="form-control" type='text' placeholder="Genre" ng-model='vm.movie.genre' />
+
     <label>Release Year</label>
     <input   class="form-control" type='text' placeholder="Release Year" ng-model='vm.movie.year' />
+
     <label>Actors</label>
     <input  required class="form-control" type='text' placeholder="Actors" ng-model='vm.movie.name' />
+
     <label>Synopsis</label>
     <input   class="form-control" type='text' placeholder="Synopsis" ng-model='vm.movie.synopsis' />
+
     <label>Movie Image Url</label>
     <input class="form-control" type='text' placeholder="Movie URL Image" ng-model='vm.movie.image' />
-    <button type="submit" class="btn btn-danger">Add Movie</button>
-    <button type="button"ui-sref='Home' class="btn btn-warning">Cancel</button>
-  </form>
-</div>
-<!--  -->
 
+    </div>
+        <button ng-click='vm.PostMovie()' class="btn btn-success">Add Movie</button>
+    </div>
+  </form>
 </div>

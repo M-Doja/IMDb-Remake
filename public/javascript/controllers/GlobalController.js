@@ -1,35 +1,30 @@
+// -------------------------------------
 (function() {
   "use strict";
   angular.module('app')
   .controller('GlobalController', GlobalController);
-  function GlobalController(HomeFactory, $state) {
+  function GlobalController(UserFactory, $state) {
     var vm = this;
+    vm.isLogin = true; //switch between the login and register view on the login_register.html page
     vm.user = {};
-    vm.nav = true;
+    vm.status = UserFactory.status;
 
-    vm.showNav = function(){
-      console.log('hey!');
-      vm.nav = false;
+    vm.logout = function() {
+      UserFactory.logout();
+      $state.go('Landing');
     };
 
-  //   vm.status = UserFactory.status;
-  //
-  //   vm.registerUser = function() {
-  //     UserFactory.registerUser(vm.user).then(function() {
-  //       $state.go('Home');
-  //     });
-  //   };
-  //
-  //   vm.loginUser = function() {
-  //     console.log("First Stop on Data flow journey");
-  //     UserFactory.loginUser(vm.user).then(function() {
-  //       $state.go('Home');
-  //     });
-  //   };
-  //
-  //   vm.logout = function() {
-  //     UserFactory.logout();
-  //     $state.go('Login');
-  //   };
+    vm.registerUser = function() {
+      UserFactory.registerUser(vm.user).then(function() {
+        $state.go('Home');
+      });
+    };
+
+    vm.loginUser = function() {
+      UserFactory.loginUser(vm.user).then(function() {
+        $state.go('Home');
+        vm.user = {};
+      });
+    };
   }
 })();

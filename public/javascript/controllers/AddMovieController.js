@@ -7,13 +7,13 @@
       vm.movie = {};
 
       vm.PostMovie = function(){
-        console.log(vm.movie);
+        console.log('checking in');
         HomeFactory.addMovie(vm.movie).then(function(){
           $state.go('Home');
         });
       };
 
 
-      
+
  }
 })();

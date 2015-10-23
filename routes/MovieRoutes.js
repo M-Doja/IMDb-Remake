@@ -10,13 +10,7 @@ var Auth = jwt({
 
 
 router.post('/',function(req, res, next){
-  var movie = new Movie(req.body);
-    // movie.title = req.body.title;
-    // movie.genre = req.body.genre;
-    // movie.year = req.body.year;
-    // movie.synopsis = req.body.synopsis;
-    // movie.name = req.body.name;
-    // movie.image = req.body.image;
+  var movie = new Movie(req.body);    
   console.log(movie);
   movie.save(function(err, result) {
     if(err) return next(err);
