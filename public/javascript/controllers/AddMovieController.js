@@ -6,12 +6,17 @@
       var vm = this;
       vm.movie = {};
 
+console.log("we are in addmoviectrl")
       vm.PostMovie = function(){
-        console.log('checking in');
-        HomeFactory.addMovie(vm.movie).then(function(){
+        console.log("we are in addmoviectrl11");
+        HomeFactory.PostMovie(vm.movie).then(function(){
           $state.go('Home');
         });
       };
+
+      vm.testButton = function(){
+        console.log("our test is working!!!!!")
+      }
 
 
 

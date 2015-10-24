@@ -33,8 +33,10 @@
 		o.EditMovie = function(id){
 			var q= $q.defer();
 			$http.put('/api/movies', id).then(function(res){
+			console.log("at Factory");
 				q.resolve(res.data);
 			});
+			o.showMovies();
 			return q.promise;
 		};
 		o.deleteMovie = function(id){
@@ -44,7 +46,7 @@
 			});
 			return q.promise;
 		};
-		o.addMovie = function(newMovie){
+		o.PostMovie = function(newMovie){
 			var q = $q.defer();
 			console.log('add movie');
 			$http.post('/api/movies', newMovie ).then(function(res){

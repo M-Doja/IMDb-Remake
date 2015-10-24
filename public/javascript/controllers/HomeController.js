@@ -10,6 +10,7 @@
 		// vm.comment = {};
 		// vm.status = UserFactory.status;
 
+
 		HomeFactory.showMovies().then(function(res){
 				vm.movie = res;
 			});
@@ -20,18 +21,21 @@
 				});
 			};
 
-			vm.getCopy = function(movie){
-				return angular.copy(movie);
+			vm.getCopy = function(movie) {
+					return angular.copy(movie);
 			};
 
-			vm.editMovie = function(movieId){
+			vm.editMovie = function(movieId, movie){
 				//Pass post ID and editted post info as one object to HomeFactory edit function
-				HomeFactory.EditMovie({IDofMovieToEdit: movieId, edittedMovie: vm.edittedMovie}).then(function(res){
+				HomeFactory.EditMovie({IDofMovieToEdit: movieId, edittedMovie: movie}).then(function(res){
+					console.log(movie);
+					console.log(movieId);
 					console.log('Made it back');
 					vm.edittedMovie = null;
-					HomeFactory.showMovies().then(function(res){
-						vm.movies = res;
-					});
+					// HomeFactory.showMovies().then(function(res){
+					// 	console.log(res);
+					// 	vm.movies = res;
+					// });
 				});
 			};
 	}

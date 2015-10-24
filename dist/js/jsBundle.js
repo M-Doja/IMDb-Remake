@@ -49,12 +49,17 @@
         var vm = this;
         vm.movie = {};
 
+        console.log("we are in addmoviectrl")
         vm.PostMovie = function() {
-            console.log('checking in');
-            HomeFactory.addMovie(vm.movie).then(function() {
+            console.log("we are in addmoviectrl11");
+            HomeFactory.PostMovie(vm.movie).then(function() {
                 $state.go('Home');
             });
         };
+
+        vm.testButton = function() {
+            console.log("our test is working!!!!!")
+        }
 
 
 
@@ -128,6 +133,7 @@
         // vm.comment = {};
         // vm.status = UserFactory.status;
 
+
         HomeFactory.showMovies().then(function(res) {
             vm.movie = res;
         });
@@ -142,17 +148,20 @@
             return angular.copy(movie);
         };
 
-        vm.editMovie = function(movieId) {
+        vm.editMovie = function(movieId, movie) {
             //Pass post ID and editted post info as one object to HomeFactory edit function
             HomeFactory.EditMovie({
                 IDofMovieToEdit: movieId,
-                edittedMovie: vm.edittedMovie
+                edittedMovie: movie
             }).then(function(res) {
+                console.log(movie);
+                console.log(movieId);
                 console.log('Made it back');
                 vm.edittedMovie = null;
-                HomeFactory.showMovies().then(function(res) {
-                    vm.movies = res;
-                });
+                // HomeFactory.showMovies().then(function(res){
+                // 	console.log(res);
+                // 	vm.movies = res;
+                // });
             });
         };
     }
@@ -212,8 +221,10 @@
         o.EditMovie = function(id) {
             var q = $q.defer();
             $http.put('/api/movies', id).then(function(res) {
+                console.log("at Factory");
                 q.resolve(res.data);
             });
+            o.showMovies();
             return q.promise;
         };
         o.deleteMovie = function(id) {
@@ -223,7 +234,7 @@
             });
             return q.promise;
         };
-        o.addMovie = function(newMovie) {
+        o.PostMovie = function(newMovie) {
             var q = $q.defer();
             console.log('add movie');
             $http.post('/api/movies', newMovie).then(function(res) {

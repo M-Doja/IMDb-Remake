@@ -10,7 +10,7 @@ var Auth = jwt({
 
 
 router.post('/',function(req, res, next){
-  var movie = new Movie(req.body);    
+  var movie = new Movie(req.body);
   console.log(movie);
   movie.save(function(err, result) {
     if(err) return next(err);
@@ -29,7 +29,8 @@ router.get('/', function(req, res){
 
 router.put('/', function(req, res, next){
   console.log(req.body);
-  Movie.update({_id: req.body.IDofMovieToEdit}, req.body.editedmovie, function(err, result){
+  console.log('router stop');
+  Movie.update({_id: req.body.IDofMovieToEdit}, req.body.edittedMovie, function(err, result){
     if(err) return next(err);
     if(!result) return next(err);
     res.send(result);
