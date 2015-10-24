@@ -55,20 +55,22 @@ router.get('/:id', function(req, res, next){
 });
 
 
-
+// console.log('router check');
 router.post('/:id/comment', Auth, function(req, res, next){
-  console.log('here at router');
-  var comment = {
-    body: req.body.body,
-    user: req.payload._id,
-    rating: req.body.rating
-    };
-  Movie.findOne({_id: req.params.id}, function(err, movie){
+
+
+  Movie.findOne({_id: req.params.id}, function(err, movieFound){
+    var comment = {
+      body: req.body.body,
+      user: req.payload._id,
+      rating: req.body.rating
+      };
     if(err) return next(err);
-    if(!result) return next(err);
-    movie.comment.push(comment);
-    movie.save(function(err, movies){
-      res.send(movie);
+    if(!movieFound) return next(err);
+    movieFound.comments.push(comment);
+    movieFound.save(function(err, movieSaved){
+      res.send(movieSaved);
+  console.log(movieSaved);
     });
   });
 });

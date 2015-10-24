@@ -8,7 +8,7 @@
 	var o = {
     request: function(config){
         if($window.localStorage.getItem('token')) {
-          config.headers.authorization = 'Bearer' + $window.localStorage.getItem('token');
+          config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
         }
         return config;
       }

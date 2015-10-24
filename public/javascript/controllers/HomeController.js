@@ -2,7 +2,7 @@
 	'use strict';
 	angular.module('app')
 	.controller('HomeController', HomeController);
-	function HomeController(HomeFactory) {
+	function HomeController(HomeFactory, $state) {
 		var vm = this;
 		vm.edittedMovie = {};
 
@@ -32,6 +32,7 @@
 					console.log(movieId);
 					console.log('Made it back');
 					vm.edittedMovie = null;
+					$state.reload();
 					// HomeFactory.showMovies().then(function(res){
 					// 	console.log(res);
 					// 	vm.movies = res;

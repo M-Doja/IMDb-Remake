@@ -68,13 +68,13 @@
       removeUser();
     };
 
-    o.comPost = function(comment){
-      var q = $q.defer();
-      $http.post('/api/user/comment', comment).then(function(res){
-        q.resolve(res.data);
-      });
-      return q.promise;
-    };
+    // o.comPost = function(comment){
+    //   var q = $q.defer();
+    //   $http.post('/api/user/comment', comment).then(function(res){
+    //     q.resolve(res.data);
+    //   });
+    //   return q.promise;
+    // };
 
     function urlBase64Decode(str) {
       var output = str.replace(/-/g, '+').replace(/_/g, '/');

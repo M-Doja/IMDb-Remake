@@ -22,10 +22,20 @@
 			});
 			return q.promise;
 		};
-		o.createComment = function( comment, movieId){
+		o.createComment = function(comment, movieId){
 			console.log(comment);
+			console.log(movieId);
 			var q = $q.defer();
 			$http.post('/api/movies/' + movieId + '/comment', comment).then(function(res){
+				q.resolve(comment);
+				console.log("back from router");
+				console.log(comment); // This is what we want
+			});
+			return q.promise;
+		};
+		o.comPost = function(comment){
+			var q = $q.defer();
+			$http.post('/api/user/comment', comment).then(function(res){
 				q.resolve(res.data);
 			});
 			return q.promise;

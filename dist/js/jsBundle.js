@@ -73,7 +73,7 @@
 
     function CommentController($state, $stateParams, HomeFactory) {
         var vm = this;
-        vm.commment = {};
+        vm.comment = {};
 
         if ($stateParams.id) {
             HomeFactory.getMoviesById($stateParams.id).then(function(res) {
@@ -82,9 +82,11 @@
         }
         vm.addComment = function() {
             HomeFactory.createComment(vm.comment, $stateParams.id).then(function(res) {
-                vm.movie = res;
+                console.log(res);
+                vm.comment = res;
             });
         };
+
     }
 })();
 
@@ -125,7 +127,7 @@
     angular.module('app')
         .controller('HomeController', HomeController);
 
-    function HomeController(HomeFactory) {
+    function HomeController(HomeFactory, $state) {
         var vm = this;
         vm.edittedMovie = {};
 
@@ -158,6 +160,7 @@
                 console.log(movieId);
                 console.log('Made it back');
                 vm.edittedMovie = null;
+                $state.reload();
                 // HomeFactory.showMovies().then(function(res){
                 // 	console.log(res);
                 // 	vm.movies = res;
@@ -177,7 +180,7 @@
         var o = {
             request: function(config) {
                 if ($window.localStorage.getItem('token')) {
-                    config.headers.authorization = 'Bearer' + $window.localStorage.getItem('token');
+                    config.headers.Authorization = 'Bearer ' + $window.localStorage.getItem('token');
                 }
                 return config;
             }
@@ -212,8 +215,18 @@
         };
         o.createComment = function(comment, movieId) {
             console.log(comment);
+            console.log(movieId);
             var q = $q.defer();
             $http.post('/api/movies/' + movieId + '/comment', comment).then(function(res) {
+                q.resolve(comment);
+                console.log("back from router");
+                console.log(comment); // This is what we want
+            });
+            return q.promise;
+        };
+        o.comPost = function(comment) {
+            var q = $q.defer();
+            $http.post('/api/user/comment', comment).then(function(res) {
                 q.resolve(res.data);
             });
             return q.promise;
@@ -323,13 +336,13 @@
             removeUser();
         };
 
-        o.comPost = function(comment) {
-            var q = $q.defer();
-            $http.post('/api/user/comment', comment).then(function(res) {
-                q.resolve(res.data);
-            });
-            return q.promise;
-        };
+        // o.comPost = function(comment){
+        //   var q = $q.defer();
+        //   $http.post('/api/user/comment', comment).then(function(res){
+        //     q.resolve(res.data);
+        //   });
+        //   return q.promise;
+        // };
 
         function urlBase64Decode(str) {
             var output = str.replace(/-/g, '+').replace(/_/g, '/');
