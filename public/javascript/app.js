@@ -9,7 +9,7 @@
 			templateUrl: 'views/LandingPage.html'
 		}).state('Home',{
 			url: '/home',
-			templateUrl: 'views/home.html'
+			templateUrl: 'views/Home.html'
 		}).state('AddMovie',{
 				url: '/add',
 				templateUrl: 'views/AddMovie.html'
