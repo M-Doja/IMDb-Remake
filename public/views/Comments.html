@@ -1,8 +1,10 @@
 <div ng-controller="CommentController as vm">
     <br>
+
     <div class="well conatiner" style="text-align: center;">
       <div class="row">
         <div class="col-sm-3">
+          <button ui-sref='Home' style=" margin-bottom:15px;margin-left:-150px;width:85px;" class="btn btn-default">< Back</button>
           <img ng-src="{{vm.movie.image}}" ng-alt="{{vm.movie.title}}" class="img-responsive" />
 
           <div ng-repeat='c in vm.movie.comments'>

@@ -11,7 +11,9 @@
 		<div ng-repeat='m in vm.movie' class="well container">
 			<div class="row">
 				<div class="col-sm-3">
-					<img ng-src="{{m.image}}" class="img-responsive" style="float:right;"alt='movie image'/>
+					<div>
+						<img ng-src="{{m.image}}" class="img-responsive" style="float:right;"alt='movie image'/>
+					</div>
 				</div>
 			<!-- <span ng-hide='vm.custom'> -->
 				<div class="col-sm-9">
@@ -27,15 +29,15 @@
 			<!-- <div><br> -->
 				<!-- <label>Comments and Reviews</label><br>
 				<textarea style="width:400px" placeholder="Leave Comments or Reviews Here.." ng-model='vm.comment.body'></textarea><br>
-				<label>Comment or Review by:</label><br>
-				<input class="form control" placeholder="Your name here..." ng-model='vm.user.username'/> -->
-				<!-- <button class="btn btn-primary btn-sm" ng-click="vm.addComment()">Submit</button> -->
+				<!-- <label>Comment or Review by:</label><br> -->
+				<!-- <input class="form control" placeholder="Your name here..." ng-model='vm.user.username'/>  -->
+				<!-- <button class="btn btn-primary btn-sm" ng-click="vm.addComment()">Submit</button>
 			<!-- </div> -->
 			<!-- </span> -->
 		<!-- <div style="text-align:center" > -->
 
 					<!-- Edit Form -->
-					
+
 				<form ng-init='edittedMovie = vm.getCopy(m);'class="well container" ng-show='showEdit' ng-submit='vm.editMovie(m._id, edittedMovie); showEdit = false;'>
 
 					<label>Movie Title</label>

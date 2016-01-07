@@ -1,4 +1,6 @@
 <br>
+
+    <!-- LOGIN -->
 <div ng-show="nav.isLogin">
   <form class="well container" ng-submit="nav.loginUser()">
     <h1 style="color:red;text-align:center;font-family:Sans Serif">Sign In</h1>
@@ -17,9 +19,11 @@
   </form>
 </div>
 
+      <!-- REGISTRATION -->
 <div ng-show="!nav.isLogin">
   <form class="well container" ng-submit="nav.registerUser()">
     <h1 style="text-align:center;color:red;">Registration</h1>
+    <p><strong>Please Note:</strong> There is a bug in the registration system. To register please enter your info and hit the"Submit" button twice. Then hit the "Back" button and then the "Login" button. Otherwise you will not be able to log in.</p>
 
     <label style="font-family:Ariel;">User Name</label>
     <input class="form-control" placeholder="Username..." ng-model="nav.user.username" required>
@@ -36,7 +40,7 @@
     <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)" style="color: red">Your passwords must match.</div>
 
     <div style="text-align:center">
-      <button type="button" ng-click="nav.isLogin = true;" class="btn btn-primary">Login</button>
+      <button type="button" ng-click="nav.isLogin = true;" class="btn btn-primary">Back</button>
       <button type="submit" class="btn btn-info">Submit</button>
     </div>
   </form>
